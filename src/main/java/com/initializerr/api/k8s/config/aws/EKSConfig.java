@@ -24,9 +24,4 @@ public class EKSConfig {
                 .withCaCert(eksClusterCa)
                 .build();
     }
-
-
-
-
-
 }
