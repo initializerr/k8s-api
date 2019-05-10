@@ -1,0 +1,8 @@
+server:
+  port: 18080
+
+eks:
+  cluster:
+    name: {AMAZON EKS Cluster name}
+    endpoint: {AMAZON EKS API server endpoint}
+    ca: {AMAZON EKS Certificate authority}
