@@ -28,6 +28,7 @@ public class EKSClientBuilder {
     static Logger logger = LoggerFactory.getLogger(EKSConfig.class);
 
     static ScheduledExecutorService executor = Executors.newSingleThreadScheduledExecutor();
+    private static String BASE64_PADDING = "=";
 
     static class Entry {
         WeakReference<DefaultKubernetesClient> clientRef;
@@ -136,6 +137,9 @@ public class EKSClientBuilder {
                 throw new RuntimeException(e);
             }
         });
-        return "k8s-aws-v1." + BaseEncoding.base64Url().encode(sb.toString().getBytes());
+        String encodedUrlWithoutPadding = BaseEncoding.base64Url()
+                .encode(sb.toString().getBytes())
+                .replaceAll(BASE64_PADDING, "");
+        return "k8s-aws-v1." + encodedUrlWithoutPadding;
     }
 }
